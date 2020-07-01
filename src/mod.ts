@@ -1,10 +1,18 @@
-import { log, Application, send } from "./deps.ts";
+import { flags, log, Application, send } from "./deps.ts";
 
 import api from "./api.ts";
 
 const app = new Application();
 
 const PORT = 8000;
+const argPort = flags.parse(Deno.args).port;
+const port = argPort ? Number(argPort) : PORT;
+
+
+if (isNaN(port)) {
+  console.error("Port is not a number.");
+  Deno.exit(1);
+}
 
 await log.setup({
   handlers: {
@@ -63,8 +71,8 @@ app.use(async (ctx) => {
 });
 
 if (import.meta.main) {
-  log.info(`Starting server on port ${PORT}...`);
+  log.info(`Starting server on port ${port}...`);
   await app.listen({
-    port: PORT,
+    port: port,
   });
 }

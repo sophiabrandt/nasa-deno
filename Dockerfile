@@ -19,5 +19,3 @@ ENV SHELL /bin/sh
 
 # These are passed as deno arguments when run with docker:
 CMD ["run", "--allow-all", "Drakefile.ts", "start"]
-
-EXPOSE 8000

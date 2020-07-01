@@ -10,7 +10,7 @@ const port = argPort ? Number(argPort) : PORT;
 
 
 if (isNaN(port)) {
-  console.error("Port is not a number.");
+  log.error("Port is not a number.");
   Deno.exit(1);
 }
 
